@@ -2,6 +2,7 @@
 import React from 'react';
 import { Star, Award, BadgeCheck } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 interface TestimonialProps {
   text: string;
@@ -56,9 +57,11 @@ const TestimonialCard: React.FC<TestimonialProps> = ({
         
         {/* Author Info */}
         <div className="flex items-center">
-          <div className="w-12 h-12 bg-gradient-to-br from-bolt-600 to-blue-300 rounded-full flex items-center justify-center text-white font-bold text-lg">
-            {author.charAt(0)}
-          </div>
+          <Avatar className="w-12 h-12 bg-gradient-to-br from-bolt-600 to-blue-300 text-white font-bold text-lg">
+            <AvatarFallback className="bg-gradient-to-br from-bolt-600 to-blue-300 text-white">
+              {author.charAt(0)}
+            </AvatarFallback>
+          </Avatar>
           <div className="ml-4">
             <div className="font-bold text-gray-800">{author}</div>
             <div className="text-sm text-gray-500 flex items-center">
@@ -112,7 +115,7 @@ const TestimonialsSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white" id="testimonials">
+    <section id="testimonials" className="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 reveal">
           <span className="bg-bolt-600 bg-opacity-10 text-bolt-600 text-sm font-medium px-4 py-1.5 rounded-full mb-3 inline-block">TRUSTED BY PROFESSIONALS</span>
@@ -137,9 +140,9 @@ const TestimonialsSection: React.FC = () => {
           <p className="font-medium text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
             Join over 500+ construction companies that trust our products for their most critical projects.
           </p>
-          <button className="bg-bolt-600 hover:bg-bolt-700 text-white font-medium px-8 py-3 rounded-lg transition-all shadow-md hover:shadow-lg">
+          <a href="/shop" className="bg-bolt-600 hover:bg-bolt-700 text-white font-medium px-8 py-3 rounded-lg transition-all shadow-md hover:shadow-lg inline-block">
             Browse Our Products
-          </button>
+          </a>
         </div>
       </div>
     </section>
