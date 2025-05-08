@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Star } from "lucide-react";
+import { Star, Award, BadgeCheck } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface TestimonialProps {
   text: string;
@@ -8,68 +9,137 @@ interface TestimonialProps {
   role: string;
   rating: number;
   delay: string;
+  companyName?: string;
+  highlight?: string;
+  icon?: React.ReactNode;
 }
 
-const TestimonialCard: React.FC<TestimonialProps> = ({ text, author, role, rating, delay }) => {
+const TestimonialCard: React.FC<TestimonialProps> = ({ 
+  text, 
+  author, 
+  role, 
+  rating, 
+  delay,
+  companyName,
+  highlight,
+  icon
+}) => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md reveal" style={{ transitionDelay: delay }}>
-      <div className="flex gap-1 mb-4">
-        {[...Array(5)].map((_, i) => (
-          <Star
-            key={i}
-            className={i < rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"}
-            size={16}
-          />
-        ))}
-      </div>
-      <p className="text-gray-700 mb-4">{text}</p>
-      <div>
-        <div className="font-semibold">{author}</div>
-        <div className="text-sm text-gray-500">{role}</div>
-      </div>
-    </div>
+    <Card className="bg-white border-none shadow-lg hover:shadow-xl transition-all duration-300 reveal product-card" style={{ transitionDelay: delay }}>
+      <CardContent className="p-8">
+        {/* Testimonial Quote Icon */}
+        <div className="mb-4 flex justify-between items-center">
+          <div className="flex gap-1">
+            {[...Array(5)].map((_, i) => (
+              <Star
+                key={i}
+                className={i < rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"}
+                size={18}
+              />
+            ))}
+          </div>
+          <div className="text-bolt-600">
+            {icon || <BadgeCheck className="w-6 h-6" />}
+          </div>
+        </div>
+        
+        {/* Testimonial Text */}
+        <p className="text-gray-700 mb-6 leading-relaxed">
+          {highlight ? (
+            <>
+              {text.split(highlight)[0]}
+              <span className="font-semibold text-bolt-600">{highlight}</span>
+              {text.split(highlight)[1]}
+            </>
+          ) : text}
+        </p>
+        
+        {/* Author Info */}
+        <div className="flex items-center">
+          <div className="w-12 h-12 bg-gradient-to-br from-bolt-600 to-blue-300 rounded-full flex items-center justify-center text-white font-bold text-lg">
+            {author.charAt(0)}
+          </div>
+          <div className="ml-4">
+            <div className="font-bold text-gray-800">{author}</div>
+            <div className="text-sm text-gray-500 flex items-center">
+              {role}
+              {companyName && (
+                <>
+                  <span className="mx-1">•</span>
+                  <span className="font-medium">{companyName}</span>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 
 const TestimonialsSection: React.FC = () => {
   const testimonials = [
     {
-      text: "The quality of the fasteners from this company is unmatched. We've been using them for our construction projects for years, and they never disappoint.",
+      text: "Switching to this supplier has reduced our project delays by 35%. Their quality fasteners and timely deliveries have made us more efficient than ever before.",
       author: "Michael Johnson",
       role: "Construction Manager",
+      companyName: "BuildRight Inc.",
       rating: 5,
-      delay: "0.1s"
+      delay: "0.1s",
+      highlight: "reduced our project delays by 35%",
+      icon: <Award className="w-6 h-6" />
     },
     {
-      text: "Fast delivery and exceptional customer service. The team was able to rush an order for a critical project, and the materials were perfect.",
+      text: "I've never experienced such reliable service. When we needed an emergency order for a major project, they delivered perfect materials in just 8 hours when other suppliers quoted 3 days.",
       author: "Sarah Williams",
       role: "Project Engineer",
+      companyName: "Modern Structures",
       rating: 5,
-      delay: "0.2s"
+      delay: "0.2s",
+      highlight: "delivered perfect materials in just 8 hours",
+      icon: <Star className="w-6 h-6 fill-yellow-400" />
     },
     {
-      text: "The bulk discount pricing has saved our company thousands over the years. Quality has always been consistent, even with large orders.",
+      text: "The premium-grade fasteners we purchase have virtually eliminated our material failure issues. Even in the most demanding conditions, these products consistently outperform the competition.",
       author: "Robert Chen",
       role: "Purchasing Director",
-      rating: 4,
-      delay: "0.3s"
+      companyName: "Chen Construction",
+      rating: 5,
+      delay: "0.3s",
+      highlight: "virtually eliminated our material failure issues",
+      icon: <BadgeCheck className="w-6 h-6" />
     },
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-gray-50" id="testimonials">
+    <section className="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white" id="testimonials">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12 reveal">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Clients Say</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what professionals in the industry have to say about our products and services.
+        <div className="text-center mb-16 reveal">
+          <span className="bg-bolt-600 bg-opacity-10 text-bolt-600 text-sm font-medium px-4 py-1.5 rounded-full mb-3 inline-block">TRUSTED BY PROFESSIONALS</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-5">Why Industry Leaders Choose Us</h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Don't just take our word for it. See how our premium fasteners and construction materials have transformed businesses and projects across the industry.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={index} {...testimonial} />
           ))}
+        </div>
+        
+        <div className="mt-16 text-center reveal">
+          <div className="inline-flex items-center justify-center mb-8 gap-1.5">
+            <span className="h-2 w-2 bg-bolt-600 rounded-full"></span>
+            <span className="h-2 w-2 bg-bolt-600 opacity-70 rounded-full"></span>
+            <span className="h-2 w-2 bg-bolt-600 opacity-40 rounded-full"></span>
+          </div>
+          <p className="font-medium text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
+            Join over 500+ construction companies that trust our products for their most critical projects.
+          </p>
+          <button className="bg-bolt-600 hover:bg-bolt-700 text-white font-medium px-8 py-3 rounded-lg transition-all shadow-md hover:shadow-lg">
+            Browse Our Products
+          </button>
         </div>
       </div>
     </section>
