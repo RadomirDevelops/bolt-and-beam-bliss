@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { Wrench, Menu, X } from "lucide-react";
+import { Wrench, Menu, X, ShoppingCart } from "lucide-react";
+import { Link } from 'react-router-dom';
 
 const NavBar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,35 +26,41 @@ const NavBar: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <a href="#" className="flex items-center gap-2">
+            <Link to="/" className="flex items-center gap-2">
               <div className={`flex items-center justify-center w-10 h-10 rounded-md ${isScrolled ? 'bg-bolt-600' : 'bg-white/90'}`}>
                 <Wrench className={`${isScrolled ? 'text-white' : 'text-bolt-600'}`} size={24} />
               </div>
               <span className={`text-2xl font-bold ${isScrolled ? 'text-gray-900' : 'text-white'}`}>
                 FastenerCo
               </span>
-            </a>
+            </Link>
           </div>
 
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className={`font-medium ${isScrolled ? 'text-gray-900 hover:text-bolt-600' : 'text-white hover:text-bolt-200'}`}>
+            <Link to="/" className={`font-medium ${isScrolled ? 'text-gray-900 hover:text-bolt-600' : 'text-white hover:text-bolt-200'}`}>
               Home
-            </a>
-            <a href="#categories" className={`font-medium ${isScrolled ? 'text-gray-900 hover:text-bolt-600' : 'text-white hover:text-bolt-200'}`}>
+            </Link>
+            <a href="/#categories" className={`font-medium ${isScrolled ? 'text-gray-900 hover:text-bolt-600' : 'text-white hover:text-bolt-200'}`}>
               Products
             </a>
-            <a href="#features" className={`font-medium ${isScrolled ? 'text-gray-900 hover:text-bolt-600' : 'text-white hover:text-bolt-200'}`}>
+            <a href="/#features" className={`font-medium ${isScrolled ? 'text-gray-900 hover:text-bolt-600' : 'text-white hover:text-bolt-200'}`}>
               Features
             </a>
-            <a href="#testimonials" className={`font-medium ${isScrolled ? 'text-gray-900 hover:text-bolt-600' : 'text-white hover:text-bolt-200'}`}>
+            <a href="/#testimonials" className={`font-medium ${isScrolled ? 'text-gray-900 hover:text-bolt-600' : 'text-white hover:text-bolt-200'}`}>
               Testimonials
             </a>
-            <a href="#contact" className={`font-medium ${isScrolled ? 'text-gray-900 hover:text-bolt-600' : 'text-white hover:text-bolt-200'}`}>
+            <a href="/#contact" className={`font-medium ${isScrolled ? 'text-gray-900 hover:text-bolt-600' : 'text-white hover:text-bolt-200'}`}>
               Contact
             </a>
+            <Link to="/shop" className={`font-medium ${isScrolled ? 'text-gray-900 hover:text-bolt-600' : 'text-white hover:text-bolt-200'}`}>
+              Shop
+            </Link>
           </nav>
 
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center space-x-4">
+            <Link to="/shop" className={`${isScrolled ? 'text-gray-900' : 'text-white'} hover:text-bolt-600`}>
+              <ShoppingCart size={24} />
+            </Link>
             <Button className={isScrolled ? 'bg-bolt-600 hover:bg-bolt-700' : 'bg-white text-bolt-600 hover:bg-gray-100'}>
               Get Quote
             </Button>
@@ -77,24 +84,32 @@ const NavBar: React.FC = () => {
         <div className="md:hidden bg-white shadow-lg">
           <div className="container mx-auto px-4 py-3">
             <nav className="flex flex-col space-y-3">
-              <a href="#" className="font-medium text-gray-900 hover:text-bolt-600 py-2" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link to="/" className="font-medium text-gray-900 hover:text-bolt-600 py-2" onClick={() => setIsMobileMenuOpen(false)}>
                 Home
-              </a>
-              <a href="#categories" className="font-medium text-gray-900 hover:text-bolt-600 py-2" onClick={() => setIsMobileMenuOpen(false)}>
+              </Link>
+              <a href="/#categories" className="font-medium text-gray-900 hover:text-bolt-600 py-2" onClick={() => setIsMobileMenuOpen(false)}>
                 Products
               </a>
-              <a href="#features" className="font-medium text-gray-900 hover:text-bolt-600 py-2" onClick={() => setIsMobileMenuOpen(false)}>
+              <a href="/#features" className="font-medium text-gray-900 hover:text-bolt-600 py-2" onClick={() => setIsMobileMenuOpen(false)}>
                 Features
               </a>
-              <a href="#testimonials" className="font-medium text-gray-900 hover:text-bolt-600 py-2" onClick={() => setIsMobileMenuOpen(false)}>
+              <a href="/#testimonials" className="font-medium text-gray-900 hover:text-bolt-600 py-2" onClick={() => setIsMobileMenuOpen(false)}>
                 Testimonials
               </a>
-              <a href="#contact" className="font-medium text-gray-900 hover:text-bolt-600 py-2" onClick={() => setIsMobileMenuOpen(false)}>
+              <a href="/#contact" className="font-medium text-gray-900 hover:text-bolt-600 py-2" onClick={() => setIsMobileMenuOpen(false)}>
                 Contact
               </a>
-              <Button className="bg-bolt-600 hover:bg-bolt-700 w-full mt-2">
-                Get Quote
-              </Button>
+              <Link to="/shop" className="font-medium text-gray-900 hover:text-bolt-600 py-2" onClick={() => setIsMobileMenuOpen(false)}>
+                Shop
+              </Link>
+              <div className="flex items-center justify-between">
+                <Link to="/shop" className="text-gray-900 hover:text-bolt-600" onClick={() => setIsMobileMenuOpen(false)}>
+                  <ShoppingCart size={24} />
+                </Link>
+                <Button className="bg-bolt-600 hover:bg-bolt-700 w-full mt-2">
+                  Get Quote
+                </Button>
+              </div>
             </nav>
           </div>
         </div>

@@ -2,6 +2,7 @@
 import React from 'react';
 import { Wrench, Building, Package, Boxes } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { Link } from 'react-router-dom';
 
 interface CategoryProps {
   title: string;
@@ -20,9 +21,11 @@ const CategoryCard: React.FC<CategoryProps> = ({ title, description, icon, color
       </div>
       <h3 className="text-xl font-bold mb-2">{title}</h3>
       <p className="text-gray-600 mb-4">{description}</p>
-      <Button variant="outline" className="border-gray-300 hover:border-bolt-600 hover:text-bolt-600">
-        View Products
-      </Button>
+      <Link to="/shop">
+        <Button variant="outline" className="border-gray-300 hover:border-bolt-600 hover:text-bolt-600">
+          View Products
+        </Button>
+      </Link>
     </div>
   );
 };
