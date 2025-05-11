@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Wrench, Menu, X, ShoppingCart, Globe, ChevronDown } from "lucide-react";
@@ -15,12 +14,12 @@ import {
 import { cn } from '@/lib/utils';
 
 const productCategories = [
-  { name: "categories.bolts", href: "/shop?category=bolts" },
-  { name: "categories.screws", href: "/shop?category=screws" },
-  { name: "categories.anchors", href: "/shop?category=anchors" },
-  { name: "categories.tools", href: "/shop?category=tools" },
-  { name: "categories.accessories", href: "/shop?category=accessories" },
-  { name: "categories.adhesives", href: "/shop?category=adhesives" }
+  { name: "categories.bolts", href: "/category/bolts" },
+  { name: "categories.screws", href: "/category/screws" },
+  { name: "categories.anchors", href: "/category/anchors" },
+  { name: "categories.tools", href: "/category/tools" },
+  { name: "categories.accessories", href: "/category/accessories" },
+  { name: "categories.adhesives", href: "/category/adhesives" }
 ];
 
 const NavBar: React.FC = () => {
@@ -91,7 +90,7 @@ const NavBar: React.FC = () => {
                       <li className="col-span-2">
                         <NavigationMenuLink asChild>
                           <a
-                            href="/shop"
+                            href="/categories"
                             className="block w-full select-none rounded-md bg-bolt-600 p-3 text-center text-sm font-medium text-white no-underline outline-none transition-colors hover:bg-bolt-700"
                           >
                             {t("categories.viewAll")}
@@ -123,7 +122,7 @@ const NavBar: React.FC = () => {
               <Globe size={20} className="mr-1" />
               <span className="text-sm">{language === "en" ? "SR" : "EN"}</span>
             </button>
-            <Link to="/shop" className={`${isScrolled ? 'text-gray-900' : 'text-white'} hover:text-bolt-600`}>
+            <Link to="/categories" className={`${isScrolled ? 'text-gray-900' : 'text-white'} hover:text-bolt-600`}>
               <ShoppingCart size={24} />
             </Link>
             <Button className={isScrolled ? 'bg-bolt-600 hover:bg-bolt-700' : 'bg-white text-bolt-600 hover:bg-gray-100'}>
@@ -169,7 +168,7 @@ const NavBar: React.FC = () => {
                     </a>
                   ))}
                   <a 
-                    href="/shop"
+                    href="/categories"
                     className="block font-medium text-bolt-600 hover:text-bolt-700 py-1"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -195,7 +194,7 @@ const NavBar: React.FC = () => {
                   <Globe size={20} className="mr-1" />
                   <span>{language === "en" ? "SR" : "EN"}</span>
                 </button>
-                <Link to="/shop" className="text-gray-900 hover:text-bolt-600" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link to="/categories" className="text-gray-900 hover:text-bolt-600" onClick={() => setIsMobileMenuOpen(false)}>
                   <ShoppingCart size={24} />
                 </Link>
               </div>
