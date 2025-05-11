@@ -1,5 +1,5 @@
 
-import { productsData } from '../components/e-commerce/products-data';
+import { products } from '../components/e-commerce/products-data';
 
 export const getProductsByCategory = (categorySlug: string) => {
   // Map category slugs to the category types used in the data
@@ -14,7 +14,7 @@ export const getProductsByCategory = (categorySlug: string) => {
   
   const category = categoryMap[categorySlug] || categorySlug;
   
-  return productsData.filter(product => 
+  return products.filter(product => 
     product.category.toLowerCase() === category.toLowerCase()
   );
 };

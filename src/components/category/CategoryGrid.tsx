@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Wrench, Building, Package, Boxes, Hammer, Glue } from 'lucide-react';
+import { Wrench, Building, Package, Boxes, Hammer, Paintbrush } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -91,7 +91,7 @@ const CategoryGrid: React.FC = () => {
     {
       title: t("categories.adhesives"),
       description: t("categoryDescriptions.adhesives"),
-      icon: <Glue className="text-white" size={24} />,
+      icon: <Paintbrush className="text-white" size={24} />,
       color: "bg-orange-600",
       slug: "adhesives",
       delay: "0.6s"
