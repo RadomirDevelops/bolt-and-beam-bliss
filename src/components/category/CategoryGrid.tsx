@@ -13,9 +13,10 @@ interface CategoryCardProps {
   color: string;
   slug: string;
   delay: string;
+  customUrl?: string;
 }
 
-const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, icon, color, slug, delay }) => {
+const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, icon, color, slug, delay, customUrl }) => {
   const { t } = useLanguage();
   
   return (
@@ -34,7 +35,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, icon, c
         </p>
       </CardContent>
       <CardFooter>
-        <Link to={`/category/${slug}`} className="w-full">
+        <Link to={customUrl || `/category/${slug}`} className="w-full">
           <Button variant="outline" className="w-full border-gray-300 hover:border-bolt-600 hover:text-bolt-600">
             {t("categories.viewProducts")}
           </Button>
@@ -54,7 +55,8 @@ const CategoryGrid: React.FC = () => {
       icon: <Wrench className="text-white" size={24} />,
       color: "bg-bolt-600",
       slug: "bolts",
-      delay: "0.1s"
+      delay: "0.1s",
+      customUrl: "/bolts" // Custom URL for bolts category
     },
     {
       title: t("categories.screws"),
