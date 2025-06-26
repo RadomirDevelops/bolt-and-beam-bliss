@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { getProductsByCategory } from '../../utils/productUtils';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -9,11 +8,18 @@ const BoltBrochure = () => {
   const { t, language } = useLanguage();
   const boltProducts = getProductsByCategory('bolts');
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="py-8 md:py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         {/* Header with decorative elements */}
-        <div className="text-center mb-12 reveal">
+        <div className="text-center mb-8 reveal">
           <div className="flex items-center justify-center mb-4">
             <div className="h-1 bg-bolt-600 w-16 mr-4"></div>
             <Wrench className="text-bolt-600" size={32} />
@@ -29,8 +35,36 @@ const BoltBrochure = () => {
           </p>
         </div>
 
+        {/* Section Navigation */}
+        <div className="flex flex-wrap justify-center gap-4 mb-12 reveal">
+          <button 
+            onClick={() => scrollToSection('introduction')}
+            className="px-4 py-2 bg-white border border-bolt-600 text-bolt-600 rounded-lg hover:bg-bolt-600 hover:text-white transition-colors font-medium"
+          >
+            {language === "en" ? "Introduction" : "Увод"}
+          </button>
+          <button 
+            onClick={() => scrollToSection('products')}
+            className="px-4 py-2 bg-white border border-bolt-600 text-bolt-600 rounded-lg hover:bg-bolt-600 hover:text-white transition-colors font-medium"
+          >
+            {language === "en" ? "Products" : "Производи"}
+          </button>
+          <button 
+            onClick={() => scrollToSection('specifications')}
+            className="px-4 py-2 bg-white border border-bolt-600 text-bolt-600 rounded-lg hover:bg-bolt-600 hover:text-white transition-colors font-medium"
+          >
+            {language === "en" ? "Specifications" : "Спецификације"}
+          </button>
+          <button 
+            onClick={() => scrollToSection('contact')}
+            className="px-4 py-2 bg-white border border-bolt-600 text-bolt-600 rounded-lg hover:bg-bolt-600 hover:text-white transition-colors font-medium"
+          >
+            {language === "en" ? "Contact" : "Контакт"}
+          </button>
+        </div>
+
         {/* Introduction section */}
-        <div className="bg-white p-6 md:p-10 rounded-lg shadow-md mb-16 reveal">
+        <div id="introduction" className="bg-white p-6 md:p-10 rounded-lg shadow-md mb-16 reveal">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/3 mb-6 md:mb-0 md:pr-8">
               <img 
@@ -64,9 +98,13 @@ const BoltBrochure = () => {
         </div>
 
         {/* Product showcase grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {boltProducts.map((product, index) => (
-            <Card key={product.id} className="overflow-hidden product-card reveal border-0 shadow-lg" style={{ transitionDelay: `${0.1 * index}s` }}>
+        <div id="products" className="mb-16">
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-bolt-600 reveal">
+            {language === "en" ? "Our Bolt Products" : "Наши Вијци"}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {boltProducts.map((product, index) => (
+              <Card key={product.id} className="overflow-hidden product-card reveal border-0 shadow-lg" style={{ transitionDelay: `${0.1 * index}s` }}>
               <div className="relative">
                 <div className="aspect-square overflow-hidden">
                   <img
@@ -128,11 +166,12 @@ const BoltBrochure = () => {
                 </div>
               </div>
             </Card>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Technical specifications section */}
-        <div className="bg-white p-6 md:p-10 rounded-lg shadow-md mb-16 reveal">
+        <div id="specifications" className="bg-white p-6 md:p-10 rounded-lg shadow-md mb-16 reveal">
           <h2 className="text-2xl font-bold mb-6 text-center text-bolt-600">
             {language === "en" ? "Technical Specifications" : "Техничке Спецификације"}
           </h2>
@@ -189,7 +228,7 @@ const BoltBrochure = () => {
         </div>
 
         {/* Call to action section */}
-        <div className="text-center reveal">
+        <div id="contact" className="text-center reveal">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             {language === "en" 
               ? "Need More Information?" 
