@@ -101,99 +101,99 @@ const BoltBrochure = () => {
           </div>
         </div>
 
-        {/* Bolt Categories */}
-        <div id="hex-bolts" className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-center text-bolt-600 reveal">
-            {language === "en" ? "Hex Bolts" : "Шестоугаони Вијци"}
+        {/* Featured Products */}
+        <div id="hex-bolts" className="mb-16">
+          <h2 className="text-3xl font-bold mb-12 text-center text-bolt-600 reveal">
+            {language === "en" ? "Featured Bolt Products" : "Истакнути Производи"}
           </h2>
-          <div className="flex justify-center">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl">
-              {boltProducts.slice(0, 4).map((product, index) => (
-                <div key={product.id} className="text-center reveal" style={{ transitionDelay: `${0.1 * index}s` }}>
-                  <div className="w-24 h-24 mx-auto mb-3 rounded-lg overflow-hidden bg-white shadow-md">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="font-semibold text-sm mb-1">{product.name}</h3>
-                  <p className="text-xs text-gray-600 mb-2">{product.size}</p>
-                  <span className="text-sm font-bold text-bolt-600">${product.price.toFixed(2)}</span>
+          
+          {/* Product 1 */}
+          <div className="max-w-4xl mx-auto mb-12 reveal">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div className="flex flex-col md:flex-row">
+                <div className="md:w-1/2">
+                  <img
+                    src={boltProducts[0]?.image}
+                    alt={boltProducts[0]?.name}
+                    className="w-full h-64 md:h-80 object-cover"
+                  />
                 </div>
-              ))}
+                <div className="md:w-1/2 p-8 flex flex-col justify-center">
+                  <h3 className="text-2xl font-bold mb-4 text-gray-800">{boltProducts[0]?.name}</h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">
+                    {language === "en" 
+                      ? "Premium quality hex bolts manufactured to exact specifications. These bolts feature superior threading and are ideal for heavy-duty applications requiring maximum strength and reliability."
+                      : "Премиум квалитет шестоугаоних вијака произведених према тачним спецификацијама. Ови вијци имају супериорно навоје и идеални су за тешке примене које захтевају максималну снагу и поузданост."}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-sm text-gray-500">{language === "en" ? "Size:" : "Величина:"}</span>
+                      <span className="ml-2 font-medium">{boltProducts[0]?.size}</span>
+                    </div>
+                    <div className="text-2xl font-bold text-bolt-600">${boltProducts[0]?.price.toFixed(2)}</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div id="carriage-bolts" className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-center text-bolt-600 reveal">
-            {language === "en" ? "Carriage Bolts" : "Каријеџ Вијци"}
-          </h2>
-          <div className="flex justify-center">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl">
-              {boltProducts.slice(4, 8).map((product, index) => (
-                <div key={product.id} className="text-center reveal" style={{ transitionDelay: `${0.1 * index}s` }}>
-                  <div className="w-24 h-24 mx-auto mb-3 rounded-lg overflow-hidden bg-white shadow-md">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="font-semibold text-sm mb-1">{product.name}</h3>
-                  <p className="text-xs text-gray-600 mb-2">{product.size}</p>
-                  <span className="text-sm font-bold text-bolt-600">${product.price.toFixed(2)}</span>
+          {/* Product 2 */}
+          <div className="max-w-4xl mx-auto mb-12 reveal">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div className="flex flex-col md:flex-row">
+                <div className="md:w-1/2">
+                  <img
+                    src={boltProducts[1]?.image}
+                    alt={boltProducts[1]?.name}
+                    className="w-full h-64 md:h-80 object-cover"
+                  />
                 </div>
-              ))}
+                <div className="md:w-1/2 p-8 flex flex-col justify-center">
+                  <h3 className="text-2xl font-bold mb-4 text-gray-800">{boltProducts[1]?.name}</h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">
+                    {language === "en" 
+                      ? "High-performance carriage bolts designed for structural applications. These bolts provide excellent holding power and are perfect for wood-to-wood connections in construction projects."
+                      : "Високо-перформансни каријеџ вијци дизајнирани за структуралне примене. Ови вијци пружају одличну снагу држања и савршени су за везу дрво-дрво у грађевинским пројектима."}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-sm text-gray-500">{language === "en" ? "Size:" : "Величина:"}</span>
+                      <span className="ml-2 font-medium">{boltProducts[1]?.size}</span>
+                    </div>
+                    <div className="text-2xl font-bold text-bolt-600">${boltProducts[1]?.price.toFixed(2)}</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div id="anchor-bolts" className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-center text-bolt-600 reveal">
-            {language === "en" ? "Anchor Bolts" : "Анкер Вијци"}
-          </h2>
-          <div className="flex justify-center">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl">
-              {boltProducts.slice(8, 12).map((product, index) => (
-                <div key={product.id} className="text-center reveal" style={{ transitionDelay: `${0.1 * index}s` }}>
-                  <div className="w-24 h-24 mx-auto mb-3 rounded-lg overflow-hidden bg-white shadow-md">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="font-semibold text-sm mb-1">{product.name}</h3>
-                  <p className="text-xs text-gray-600 mb-2">{product.size}</p>
-                  <span className="text-sm font-bold text-bolt-600">${product.price.toFixed(2)}</span>
+          {/* Product 3 */}
+          <div className="max-w-4xl mx-auto mb-16 reveal">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div className="flex flex-col md:flex-row">
+                <div className="md:w-1/2">
+                  <img
+                    src={boltProducts[2]?.image}
+                    alt={boltProducts[2]?.name}
+                    className="w-full h-64 md:h-80 object-cover"
+                  />
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div id="socket-bolts" className="mb-16">
-          <h2 className="text-2xl font-bold mb-6 text-center text-bolt-600 reveal">
-            {language === "en" ? "Socket Head Bolts" : "Унутрашњи Шестоугао"}
-          </h2>
-          <div className="flex justify-center">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl">
-              {boltProducts.slice(12, 16).map((product, index) => (
-                <div key={product.id} className="text-center reveal" style={{ transitionDelay: `${0.1 * index}s` }}>
-                  <div className="w-24 h-24 mx-auto mb-3 rounded-lg overflow-hidden bg-white shadow-md">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover"
-                    />
+                <div className="md:w-1/2 p-8 flex flex-col justify-center">
+                  <h3 className="text-2xl font-bold mb-4 text-gray-800">{boltProducts[2]?.name}</h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">
+                    {language === "en" 
+                      ? "Industrial-grade anchor bolts engineered for concrete applications. These bolts offer exceptional pull-out resistance and are essential for securing heavy machinery and structural elements."
+                      : "Индустријски анкер вијци инжењерисани за бетонске примене. Ови вијци нуде изузетну отпорност на извлачење и неопходни су за осигуравање тешких машина и структуралних елемената."}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-sm text-gray-500">{language === "en" ? "Size:" : "Величина:"}</span>
+                      <span className="ml-2 font-medium">{boltProducts[2]?.size}</span>
+                    </div>
+                    <div className="text-2xl font-bold text-bolt-600">${boltProducts[2]?.price.toFixed(2)}</div>
                   </div>
-                  <h3 className="font-semibold text-sm mb-1">{product.name}</h3>
-                  <p className="text-xs text-gray-600 mb-2">{product.size}</p>
-                  <span className="text-sm font-bold text-bolt-600">${product.price.toFixed(2)}</span>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </div>
