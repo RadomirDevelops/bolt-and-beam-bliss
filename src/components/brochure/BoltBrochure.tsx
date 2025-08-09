@@ -35,32 +35,36 @@ const BoltBrochure = () => {
           </p>
         </div>
 
-        {/* Section Navigation */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12 reveal">
-          <button 
-            onClick={() => scrollToSection('introduction')}
-            className="px-4 py-2 bg-white border border-bolt-600 text-bolt-600 rounded-lg hover:bg-bolt-600 hover:text-white transition-colors font-medium"
+        {/* Bolt Types Navigation */}
+        <div className="flex flex-wrap justify-center gap-6 mb-12 reveal">
+          <a 
+            href="#hex-bolts"
+            onClick={(e) => { e.preventDefault(); scrollToSection('hex-bolts'); }}
+            className="text-bolt-600 hover:text-bolt-700 font-medium underline decoration-2 underline-offset-4 hover:decoration-bolt-700 transition-colors"
           >
-            {language === "en" ? "Introduction" : "Увод"}
-          </button>
-          <button 
-            onClick={() => scrollToSection('products')}
-            className="px-4 py-2 bg-white border border-bolt-600 text-bolt-600 rounded-lg hover:bg-bolt-600 hover:text-white transition-colors font-medium"
+            {language === "en" ? "Hex Bolts" : "Шестоугаони Вијци"}
+          </a>
+          <a 
+            href="#carriage-bolts"
+            onClick={(e) => { e.preventDefault(); scrollToSection('carriage-bolts'); }}
+            className="text-bolt-600 hover:text-bolt-700 font-medium underline decoration-2 underline-offset-4 hover:decoration-bolt-700 transition-colors"
           >
-            {language === "en" ? "Products" : "Производи"}
-          </button>
-          <button 
-            onClick={() => scrollToSection('specifications')}
-            className="px-4 py-2 bg-white border border-bolt-600 text-bolt-600 rounded-lg hover:bg-bolt-600 hover:text-white transition-colors font-medium"
+            {language === "en" ? "Carriage Bolts" : "Каријеџ Вијци"}
+          </a>
+          <a 
+            href="#anchor-bolts"
+            onClick={(e) => { e.preventDefault(); scrollToSection('anchor-bolts'); }}
+            className="text-bolt-600 hover:text-bolt-700 font-medium underline decoration-2 underline-offset-4 hover:decoration-bolt-700 transition-colors"
           >
-            {language === "en" ? "Specifications" : "Спецификације"}
-          </button>
-          <button 
-            onClick={() => scrollToSection('contact')}
-            className="px-4 py-2 bg-white border border-bolt-600 text-bolt-600 rounded-lg hover:bg-bolt-600 hover:text-white transition-colors font-medium"
+            {language === "en" ? "Anchor Bolts" : "Анкер Вијци"}
+          </a>
+          <a 
+            href="#socket-bolts"
+            onClick={(e) => { e.preventDefault(); scrollToSection('socket-bolts'); }}
+            className="text-bolt-600 hover:text-bolt-700 font-medium underline decoration-2 underline-offset-4 hover:decoration-bolt-700 transition-colors"
           >
-            {language === "en" ? "Contact" : "Контакт"}
-          </button>
+            {language === "en" ? "Socket Head Bolts" : "Унутрашњи Шестоугао"}
+          </a>
         </div>
 
         {/* Introduction section */}
@@ -97,76 +101,100 @@ const BoltBrochure = () => {
           </div>
         </div>
 
-        {/* Product showcase grid */}
-        <div id="products" className="mb-16">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-bolt-600 reveal">
-            {language === "en" ? "Our Bolt Products" : "Наши Вијци"}
+        {/* Bolt Categories */}
+        <div id="hex-bolts" className="mb-12">
+          <h2 className="text-2xl font-bold mb-6 text-center text-bolt-600 reveal">
+            {language === "en" ? "Hex Bolts" : "Шестоугаони Вијци"}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {boltProducts.map((product, index) => (
-              <Card key={product.id} className="overflow-hidden product-card reveal border-0 shadow-lg" style={{ transitionDelay: `${0.1 * index}s` }}>
-              <div className="relative">
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="object-cover w-full h-full transition-transform duration-500 hover:scale-110"
-                  />
+          <div className="flex justify-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl">
+              {boltProducts.slice(0, 4).map((product, index) => (
+                <div key={product.id} className="text-center reveal" style={{ transitionDelay: `${0.1 * index}s` }}>
+                  <div className="w-24 h-24 mx-auto mb-3 rounded-lg overflow-hidden bg-white shadow-md">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="font-semibold text-sm mb-1">{product.name}</h3>
+                  <p className="text-xs text-gray-600 mb-2">{product.size}</p>
+                  <span className="text-sm font-bold text-bolt-600">${product.price.toFixed(2)}</span>
                 </div>
-                {product.tag && (
-                  <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-white text-sm font-bold ${
-                    product.tag === 'New' ? 'bg-emerald-600' : 
-                    product.tag === 'Sale' ? 'bg-red-600' : 
-                    'bg-amber-500'
-                  }`}>
-                    {language === "en" ? product.tag : 
-                      product.tag === 'New' ? 'Ново' : 
-                      product.tag === 'Sale' ? 'Попуст' : 
-                      'Бестселер'}
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div id="carriage-bolts" className="mb-12">
+          <h2 className="text-2xl font-bold mb-6 text-center text-bolt-600 reveal">
+            {language === "en" ? "Carriage Bolts" : "Каријеџ Вијци"}
+          </h2>
+          <div className="flex justify-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl">
+              {boltProducts.slice(4, 8).map((product, index) => (
+                <div key={product.id} className="text-center reveal" style={{ transitionDelay: `${0.1 * index}s` }}>
+                  <div className="w-24 h-24 mx-auto mb-3 rounded-lg overflow-hidden bg-white shadow-md">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                )}
-              </div>
-              
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">{product.name}</h3>
-                <div className="flex items-center space-x-1 mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className={`w-4 h-4 ${i < product.rating ? 'text-amber-500' : 'text-gray-300'}`}
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  ))}
-                  <span className="text-xs text-gray-500">({product.reviewCount})</span>
+                  <h3 className="font-semibold text-sm mb-1">{product.name}</h3>
+                  <p className="text-xs text-gray-600 mb-2">{product.size}</p>
+                  <span className="text-sm font-bold text-bolt-600">${product.price.toFixed(2)}</span>
                 </div>
-                
-                <p className="text-gray-600 mb-4">{product.description}</p>
-                
-                <div className="flex justify-between items-center border-t pt-4 border-gray-100">
-                  <div>
-                    <div className="text-sm text-gray-500">{language === "en" ? "Material" : "Материјал"}</div>
-                    <div className="font-medium">{product.material}</div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div id="anchor-bolts" className="mb-12">
+          <h2 className="text-2xl font-bold mb-6 text-center text-bolt-600 reveal">
+            {language === "en" ? "Anchor Bolts" : "Анкер Вијци"}
+          </h2>
+          <div className="flex justify-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl">
+              {boltProducts.slice(8, 12).map((product, index) => (
+                <div key={product.id} className="text-center reveal" style={{ transitionDelay: `${0.1 * index}s` }}>
+                  <div className="w-24 h-24 mx-auto mb-3 rounded-lg overflow-hidden bg-white shadow-md">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <div>
-                    <div className="text-sm text-gray-500">{language === "en" ? "Size" : "Величина"}</div>
-                    <div className="font-medium">{product.size}</div>
-                  </div>
-                  <div>
-                    <div className="text-sm text-gray-500">{language === "en" ? "Price" : "Цена"}</div>
-                    <div className="font-bold text-bolt-600">${product.price.toFixed(2)}</div>
-                  </div>
+                  <h3 className="font-semibold text-sm mb-1">{product.name}</h3>
+                  <p className="text-xs text-gray-600 mb-2">{product.size}</p>
+                  <span className="text-sm font-bold text-bolt-600">${product.price.toFixed(2)}</span>
                 </div>
-              </div>
-            </Card>
-            ))}
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div id="socket-bolts" className="mb-16">
+          <h2 className="text-2xl font-bold mb-6 text-center text-bolt-600 reveal">
+            {language === "en" ? "Socket Head Bolts" : "Унутрашњи Шестоугао"}
+          </h2>
+          <div className="flex justify-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl">
+              {boltProducts.slice(12, 16).map((product, index) => (
+                <div key={product.id} className="text-center reveal" style={{ transitionDelay: `${0.1 * index}s` }}>
+                  <div className="w-24 h-24 mx-auto mb-3 rounded-lg overflow-hidden bg-white shadow-md">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="font-semibold text-sm mb-1">{product.name}</h3>
+                  <p className="text-xs text-gray-600 mb-2">{product.size}</p>
+                  <span className="text-sm font-bold text-bolt-600">${product.price.toFixed(2)}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
